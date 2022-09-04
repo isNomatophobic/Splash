@@ -2,7 +2,7 @@ import {
     Routes as RouterRoutes,
     Route,
   } from "react-router-dom";
-import { Advertise, Blog, Explore, Home, Layout } from "components";
+import { Advertise, Blog, Explore, Home, Layout, Login } from "components";
 const Routes = ()=>{
     return(
         <RouterRoutes>
@@ -12,6 +12,7 @@ const Routes = ()=>{
             <Route path="/advertise" element={<Advertise/>} />
             <Route path="/blog" element={<Blog/>} />
           </Route>
+          <Route path="login" element={<Login/>}/>
         </RouterRoutes>
     )
 }
