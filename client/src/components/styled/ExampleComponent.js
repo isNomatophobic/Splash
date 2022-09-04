@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { breakpoints } from "theme";
 import Box from "./Box";
 
 //How to use theme example
@@ -14,6 +15,9 @@ const ExampleComponent = styled(Box)`
     &:hover{
         background:grey;
         color:${props=>props.theme.palette.text.secondary};
+    }
+    @media ${breakpoints.lg}{
+        background:blue;
     }
 `
 export default ExampleComponent;
