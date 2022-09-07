@@ -1,3 +1,5 @@
 export {default as Box} from './Box'
 export {default as Columns} from './Columns'
 export {default} from './Button'
+export {default as SearchButton} from './SearchButton'
+export {default as Popmenu} from './Popmenu'

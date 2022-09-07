@@ -22,9 +22,9 @@ const Buttonst = styled.button`
     cursor: pointer;
     `
 
-const Button = ({text}) => {
+const Button = ({text,style}) => {
   return (
-    <Buttonst>
+    <Buttonst style={style}>
         {text}
     </Buttonst>
   )
