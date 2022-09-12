@@ -4,7 +4,7 @@ import styled,{ keyframes } from 'styled-components'
 
   
 
-const Popmenu = ({visible,children,minwidth,maxwidth,align}) => {
+const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
   const growOut = keyframes`
   0% {
     transform: rotateX(-90deg)
@@ -18,8 +18,9 @@ const Popmenu = ({visible,children,minwidth,maxwidth,align}) => {
   `
   
   const Menu= styled.div`
+  background-color: white;
   display:${visible ?`flex`:`none`};
-  width:${maxwidth}px;
+  width:${maxwidth}px;}
   height: fit-content;
   position: absolute;
   right: ${align}px;
@@ -30,8 +31,8 @@ const Popmenu = ({visible,children,minwidth,maxwidth,align}) => {
   border-radius: 4px;
   box-shadow: 0 8px 16px #00000029;
   border: 1px solid #d1d1d1;
-  z-index: -1;
-  animation: ${growOut} 300ms ease-in-out forwards;
+  z-index: 10;
+  transition: all 0,5s ease-in-out;
   transform-origin: top center;
   ${minwidth && `
   &:before{
@@ -60,7 +61,7 @@ const Popmenu = ({visible,children,minwidth,maxwidth,align}) => {
   `
   
   
-    return <Menu>{children}</Menu>
+    return <Menu style={style}>{children}</Menu>
   
 
 }

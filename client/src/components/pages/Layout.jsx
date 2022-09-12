@@ -10,7 +10,20 @@ import { Popmenu, SearchButton } from 'components/styled';
 
 
 
-
+const PopMenuUl= styled.ul`
+padding: 0px;
+z-index: 10;
+`
+const PopMenuTitle= styled.h1`
+cursor: default;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+text-align: center;
+`
 const StyledUl = styled.ul`
   font-size: 14px;
   padding: 0px;
@@ -35,10 +48,12 @@ background-color: buttonface;
 transition: all .1s ease-in-out;
 &:focus-within{
   background-color: white;
+  border: 1px solid #d9d9d9;
   }
 `
 
 const StyledLi = styled.li`
+z-index: 10;
 margin: 0px 10px;
 display: flex;
 justify-content: center;
@@ -70,14 +85,32 @@ const StyledLink = styled(Link)`
   }
   text-decoration: none;
   transition: all .1s ease-in-out;
+  z-index: 10;
   `
 const Spliter= styled.div`
 background-color:${props=>props.theme.palette.text.main};
 color:${props=>props.theme.palette.text.main};
 `
 
+
+const DownArrorButton = styled.div`
+border: solid ${props=>props.theme.palette.text.main};
+border-width: 0 3px 3px 0;
+display: inline-block;
+padding: 3px;
+transform: rotate(45deg);
+-webkit-transform: rotate(45deg);
+background-color: white;
+cursor: pointer;
+&:hover{
+  border: solid ${props=>props.theme.palette.text.secondary};
+  border-width: 0 3px 3px 0;
+}
+`
+
+
 const Layout = () => {
-  const [isActive,setIsActive] = useState([false,false])
+  const [isActive,setIsActive] = useState([false,false,false])
   const menuOpen =(id)=>{
     setIsActive(existingItems => {
       return existingItems.map((item, j) => {
@@ -85,17 +118,19 @@ const Layout = () => {
       {
         return item=!item
       }
-      if(item===true)
+      if(item===true && id!==2)
       {
         return item=!item
       }
+      if(isActive[0]===false)
+      return item=false
       else{
         return item
       }
         })
-      })
-      console.log(isActive);
+      });
     }
+  
   
 
   const [Screen,setScreen]=useState()
@@ -115,16 +150,39 @@ const Layout = () => {
     }
   }
   useEffect(()=>{
+    Resize();
+  },[]);
+  useEffect(()=>{
     window.addEventListener('resize',Resize)
     return () => window.removeEventListener('resize', Resize);
   });
   
+  const SectionContainer = styled.div`
+  padding: 32px;
+display: flex;
+flex-direction: ${Screen ==='Desktop' ? 'row':'column'};
+z-index: 10;
+`
+const PopMenuFooter = styled.div`
+height: 55px;
+padding: 16px 32px;
+border-top: 1.5px solid #E7E1E1;
+display: ${Screen ==='Desktop' ? 'flex':'none'};
+display: flex;
+justify-content: space-around;
+
+`
+const StyledSection = styled.div`
+width: 188px;
+display: flex;
+flex-direction: column;
+`
   return (
     <>
-    <nav>
+    <nav style={{ position: 'fixed',width: '100%',backgroundColor: 'white',top: '0'}}>
         <StyledUl>
           <StyledLi>
-            <StyledLink to="/"><Icon path={logo}/></StyledLink>
+            <StyledLink to="/" style={{paddingRight: "1em"}}><Icon path={logo}/></StyledLink>
           </StyledLi>
             <SearchContainer style={{position:'relative'}}>
               <SearchButton  ><SearchIcon  width="20" height="20"  viewBox="0 0 32 32" version="1.1" aria-hidden="false"><path d="M22 20c1.2-1.6 2-3.7 2-6 0-5.5-4.5-10-10-10S4 8.5 4 14s4.5 10 10 10c2.3 0 4.3-.7 6-2l6.1 6 1.9-2-6-6zm-8 1.3c-4 0-7.3-3.3-7.3-7.3S10 6.7 14 6.7s7.3 3.3 7.3 7.3-3.3 7.3-7.3 7.3z"></path></SearchIcon></SearchButton>
@@ -133,30 +191,103 @@ const Layout = () => {
               <Popmenu visible={isActive[1]}  maxwidth='510' align='-450'>maikatiii</Popmenu>
             </SearchContainer>
           <div className='Desktop' style={{display:ScreanSubType!=='Mobile'?'flex':'none'}}>
-          <StyledLi>
+          <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/explore">Explore</StyledLink>
           </StyledLi>
-          <StyledLi>
+          <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/advertise">Advertise</StyledLink>
           </StyledLi>
-          <StyledLi>
+          <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/blog">Blog</StyledLink>
           </StyledLi>
             <Spliter style={{width:'1px',height:'30px',display:ScreanSubType!=='Mobile'?'flex':'none'}}></Spliter>
-          <StyledLi>
+          <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/login">Log in</StyledLink>
           </StyledLi>
           <Spliter style={{ backgroundColor:'transparent',display:ScreanSubType!=='Mobile'?'flex':'none',alignItems:'center'}}>/</Spliter>
-          <StyledLi>
+          <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/signup">Sign up</StyledLink>
           </StyledLi>
-          <StyledLi>
+          <StyledLi style={{margin: "0px"}}>
             <Button text={Screen==='Desktop'?'Submit a photo':'Submit'}/>
           </StyledLi>
           </div>
           <StyledLi style={{position:'relative'}}>
            <SearchButton className='menubutton' onClick={()=>menuOpen(0)} ><SearchIcon width="24" height="24"  viewBox="0 0 32 32" version="1.1" aria-hidden="false"><path d="M4 21.3h24V24H4v-2.7zM4 8v2.7h24V8H4zm0 9.3h24v-2.7H4v2.7z"></path></SearchIcon></SearchButton>
-           <Popmenu visible={isActive[0]} maxwidth='645' minwidth='270' align='0'>maikatiii</Popmenu>
+           <Popmenu visible={isActive[0]} maxwidth='645' minwidth='270' align='0'>
+            <div style={{width: '100%'}}>
+          <SectionContainer>
+           <StyledSection >
+            <PopMenuTitle>
+              title
+            </PopMenuTitle>
+            <PopMenuUl>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+
+            </PopMenuUl>
+            </StyledSection>
+           <StyledSection style={{paddingTop: Screen==='Desktop'?'0px':'20px'}}>
+           <PopMenuTitle>
+              title
+            </PopMenuTitle>
+            <PopMenuUl>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+           </StyledSection>
+           <StyledSection style={{paddingTop: Screen==='Desktop'?'0px':'20px'}}>
+           <PopMenuTitle>
+              title
+            </PopMenuTitle>
+            <PopMenuUl>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+           </StyledSection>
+
+
+           <StyledSection style={{display: Screen!=='Desktop'?'flex':'none',paddingTop: Screen==='Desktop'?'0px':'20px'}}>
+           <PopMenuTitle>
+              title
+            </PopMenuTitle>
+            <PopMenuUl>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+           </StyledSection>
+           <StyledSection style={{display: Screen!=='Desktop'?'flex':'none',paddingTop: Screen==='Desktop'?'0px':'20px'}}>
+           <PopMenuTitle>
+              English
+            </PopMenuTitle>
+            <PopMenuUl>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+           </StyledSection>
+           </SectionContainer>
+
+
+           <PopMenuFooter style={{display: Screen==='Desktop'?'flex':'none'}}>
+            <ul style={{display: 'flex'}}>
+              <StyledLi><StyledLink to="/">English</StyledLink></StyledLi>
+              <StyledLi><StyledLink to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink to="/">content</StyledLink></StyledLi>
+            </ul>
+              <div style={{alignItems: 'center',justifyContent: 'center',display: 'flex'}}>
+              <StyledLink style={{marginRight: '5px'}} to="/">English</StyledLink>
+              <DownArrorButton onClick={()=>menuOpen(2)}><Popmenu visible={isActive[2]}  maxwidth='196' align='-12' style={{transform: 'rotate(-45deg)',top: '35px'}}>maikatiii</Popmenu></DownArrorButton>
+              </div>
+            </PopMenuFooter>
+
+            
+            </div>
+           </Popmenu>
           </StyledLi>
         </StyledUl>
       </nav>
