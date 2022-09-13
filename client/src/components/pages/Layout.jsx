@@ -5,7 +5,7 @@ import React from 'react'
 import {Outlet ,Link } from "react-router-dom";
 import styled from 'styled-components';
 import { useState,useEffect} from 'react';
-import { Popmenu, SearchButton } from 'components/styled';
+import { DownSliderMenu, Popmenu, SearchButton } from 'components/styled';
 
 
 
@@ -14,16 +14,7 @@ const PopMenuUl= styled.ul`
 padding: 0px;
 z-index: 10;
 `
-const PopMenuTitle= styled.h1`
-cursor: default;
--webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
-text-align: center;
-`
+
 const StyledUl = styled.ul`
   font-size: 14px;
   padding: 0px;
@@ -177,6 +168,21 @@ width: 188px;
 display: flex;
 flex-direction: column;
 `
+
+const PopMenuTitle= styled.h1`
+cursor: default;
+display: ${Screen==='Desktop'?'flex':'none'};
+justify-content:center;
+alighn
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+text-align: center;
+`
+
   return (
     <>
     <nav style={{ position: 'fixed',width: '100%',backgroundColor: 'white',top: '0'}}>
@@ -216,37 +222,62 @@ flex-direction: column;
            <SearchButton className='menubutton' onClick={()=>menuOpen(0)} ><SearchIcon width="24" height="24"  viewBox="0 0 32 32" version="1.1" aria-hidden="false"><path d="M4 21.3h24V24H4v-2.7zM4 8v2.7h24V8H4zm0 9.3h24v-2.7H4v2.7z"></path></SearchIcon></SearchButton>
            <Popmenu visible={isActive[0]} maxwidth='645' minwidth='270' align='0'>
             <div style={{width: '100%'}}>
+
           <SectionContainer>
            <StyledSection >
             <PopMenuTitle>
               title
             </PopMenuTitle>
+            <PopMenuUl style={{display: `${Screen==='Desktop'?'block':'none'}`}}>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+
+            <DownSliderMenu screen={Screen} title='Neshto'>
             <PopMenuUl>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
-
             </PopMenuUl>
+              </DownSliderMenu>
+
             </StyledSection>
            <StyledSection style={{paddingTop: Screen==='Desktop'?'0px':'20px'}}>
            <PopMenuTitle>
               title
             </PopMenuTitle>
+            <PopMenuUl style={{display: `${Screen==='Desktop'?'block':'none'}`}}>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+
+            <DownSliderMenu screen={Screen} title='Neshto'>
             <PopMenuUl>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
             </PopMenuUl>
+              </DownSliderMenu>
            </StyledSection>
            <StyledSection style={{paddingTop: Screen==='Desktop'?'0px':'20px'}}>
            <PopMenuTitle>
               title
             </PopMenuTitle>
+            <PopMenuUl style={{display: `${Screen==='Desktop'?'block':'none'}`}}>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+
+            <DownSliderMenu screen={Screen} title='Neshto'>
             <PopMenuUl>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
             </PopMenuUl>
+              </DownSliderMenu>
            </StyledSection>
 
 
@@ -254,21 +285,29 @@ flex-direction: column;
            <PopMenuTitle>
               title
             </PopMenuTitle>
+            <PopMenuUl style={{display: `${Screen==='Desktop'?'block':'none'}`}}>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+              <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
+            </PopMenuUl>
+
+
+            <DownSliderMenu screen={Screen} title='Neshto'>
             <PopMenuUl>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
             </PopMenuUl>
+              </DownSliderMenu>
            </StyledSection>
            <StyledSection style={{display: Screen!=='Desktop'?'flex':'none',paddingTop: Screen==='Desktop'?'0px':'20px'}}>
-           <PopMenuTitle>
-              English
-            </PopMenuTitle>
+            <DownSliderMenu screen={Screen} title='Neshto'>
             <PopMenuUl>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
             </PopMenuUl>
+              </DownSliderMenu>
            </StyledSection>
            </SectionContainer>
 
