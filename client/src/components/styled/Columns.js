@@ -2,6 +2,6 @@ import styled from "styled-components"
 
 const Columns = styled.div`
     display:flex;
-    flex-direction:columns;
+    flex-direction:column;
 `
 export default Columns;

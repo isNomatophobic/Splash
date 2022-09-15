@@ -2,8 +2,7 @@ import {
     Routes as RouterRoutes,
     Route,
   } from "react-router-dom";
-import { Advertise, Blog, Explore, Home, Layout, Login } from "components";
-import Signup from "components/pages/Signup";
+import { Advertise, Blog, Explore, Home, Layout, Login,Signup } from "pages";
 const Routes = ()=>{
     return(
         <RouterRoutes>

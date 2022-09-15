@@ -59,11 +59,7 @@ const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
   }
   `}
   `
-  
-  
     return <Menu style={style}>{children}</Menu>
-  
-
 }
 
 export default Popmenu
