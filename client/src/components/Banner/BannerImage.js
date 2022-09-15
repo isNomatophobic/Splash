@@ -1,4 +1,4 @@
-import testImage from './test_image.jpg'
+import testImage from './test-image.jpg'
 const { BannerImageWrapper } = require("./styled")
 
 const BannerImage = ()=>{
