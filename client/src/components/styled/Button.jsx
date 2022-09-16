@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import PropTypes  from 'prop-types'
+import { breakpoints } from 'theme'
 
 
 const Buttonst = styled.button`
@@ -31,6 +32,6 @@ const Button = ({text,style}) => {
 }
 
 Button.prototypes={
-    text: PropTypes.string.isRequired
+    text: PropTypes.string
 }
 export default Button

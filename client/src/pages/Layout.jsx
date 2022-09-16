@@ -8,6 +8,8 @@ import { useState,useEffect} from 'react';
 import { DownSliderMenu, Popmenu, SearchButton } from 'components/styled';
 import Search from 'components/Search';
 import { SearchIcon } from 'components/Search/search.styled';
+import { breakpoints } from 'theme';
+import { isContentEditable } from '@testing-library/user-event/dist/utils';
 
 
 
@@ -15,6 +17,11 @@ import { SearchIcon } from 'components/Search/search.styled';
 const PopMenuUl= styled.ul`
 padding: 0px;
 z-index: 10;
+display: none;
+@media (${breakpoints.md})
+{
+  display: block;
+}
 `
 
 const StyledUl = styled.ul`
@@ -47,10 +54,12 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   transition: all .1s ease-in-out;
   z-index: 10;
+  height:
   `
 const Spliter= styled.div`
 background-color:${props=>props.theme.palette.text.main};
 color:${props=>props.theme.palette.text.main};
+display: flex;
 `
 
 
@@ -67,6 +76,53 @@ cursor: pointer;
   border: solid ${props=>props.theme.palette.text.secondary};
   border-width: 0 3px 3px 0;
 }
+`
+const SectionContainer = styled.div`
+  padding: 32px;
+display: flex;
+flex-direction: column;
+z-index: 10;
+@media (${breakpoints.md}) {
+  flex-direction: row;
+}
+`
+const PopMenuFooter = styled.div`
+height: 55px;
+padding: 16px 32px;
+border-top: 1.5px solid #E7E1E1;
+display: none;
+@media (${breakpoints.md}) {
+  display: flex;
+};
+justify-content: space-around;
+`
+
+const StyledSection = styled.div`
+width: 188px;
+display: flex;
+flex-direction: column;
+`
+
+const PopMenuTitle= styled.h1`
+cursor: default;
+display: none;
+@media (${breakpoints.md}) {
+  display: flex;
+};
+justify-content:center;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+text-align: center;
+`
+const Desktop = styled.div`
+display: none;
+@media ${breakpoints.sm} {
+  display: flex;
+};
 `
 
 
@@ -95,19 +151,14 @@ const Layout = () => {
   
 
   const [Screen,setScreen]=useState()
-  const [ScreanSubType,setScreenSubType]=useState();
   const Resize =()=>{
     if(window.innerWidth > 980 )
     {
       setScreen('Desktop')
-      if(window.innerWidth > 1100)setScreenSubType('Desktop')
-      else setScreenSubType('Tablet')
     }
     else 
     {
       setScreen('Small')
-      if(window.innerWidth < 760)setScreenSubType('Mobile')
-      else setScreenSubType('Tablet')
     }
   }
   useEffect(()=>{
@@ -118,50 +169,20 @@ const Layout = () => {
     return () => window.removeEventListener('resize', Resize);
   });
   
-  const SectionContainer = styled.div`
-  padding: 32px;
-display: flex;
-flex-direction: ${Screen ==='Desktop' ? 'row':'column'};
-z-index: 10;
-`
-const PopMenuFooter = styled.div`
-height: 55px;
-padding: 16px 32px;
-border-top: 1.5px solid #E7E1E1;
-display: ${Screen ==='Desktop' ? 'flex':'none'};
-display: flex;
-justify-content: space-around;
+ 
 
-`
-const StyledSection = styled.div`
-width: 188px;
-display: flex;
-flex-direction: column;
-`
 
-const PopMenuTitle= styled.h1`
-cursor: default;
-display: ${Screen==='Desktop'?'flex':'none'};
-justify-content:center;
-alighn
--webkit-touch-callout: none;
--webkit-user-select: none;
--khtml-user-select: none;
--moz-user-select: none;
--ms-user-select: none;
-user-select: none;
-text-align: center;
-`
+
 
   return (
     <>
     <nav style={{ position: 'fixed',width: '100%',backgroundColor: 'white',top: '0',zIndex:'10'}}>
         <StyledUl>
           <StyledLi>
-            <StyledLink to="/" style={{paddingRight: "1em"}}><Icon path={logo}/></StyledLink>
+            <StyledLink style={{width: '32px'}} to="/" ><Icon  path={logo}/></StyledLink>
           </StyledLi>
             <Search height="40px"/>
-          <div className='Desktop' style={{display:ScreanSubType!=='Mobile'?'flex':'none'}}>
+          <Desktop className='Desktop' style={{}}>
           <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/explore">Explore</StyledLink>
           </StyledLi>
@@ -171,18 +192,18 @@ text-align: center;
           <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/blog">Blog</StyledLink>
           </StyledLi>
-            <Spliter style={{width:'1px',height:'30px',display:ScreanSubType!=='Mobile'?'flex':'none'}}></Spliter>
+            <Spliter style={{width:'1px',height:'30px'}}></Spliter>
           <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/login">Log in</StyledLink>
           </StyledLi>
-          <Spliter style={{ backgroundColor:'transparent',display:ScreanSubType!=='Mobile'?'flex':'none',alignItems:'center'}}>/</Spliter>
+          <Spliter style={{ backgroundColor:'transparent',alignItems:'center'}}>/</Spliter>
           <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/signup">Sign up</StyledLink>
           </StyledLi>
           <StyledLi style={{margin: "0px"}}>
             <Button text={Screen==='Desktop'?'Submit a photo':'Submit'}/>
           </StyledLi>
-          </div>
+          </Desktop>
           <StyledLi style={{position:'relative'}}>
            <SearchButton className='menubutton' onClick={()=>menuOpen(0)} ><SearchIcon width="24" height="24"  viewBox="0 0 32 32" version="1.1" aria-hidden="false"><path d="M4 21.3h24V24H4v-2.7zM4 8v2.7h24V8H4zm0 9.3h24v-2.7H4v2.7z"></path></SearchIcon></SearchButton>
            <Popmenu visible={isActive[0]} maxwidth='645' minwidth='270' align='0'>
@@ -193,7 +214,7 @@ text-align: center;
             <PopMenuTitle>
               title
             </PopMenuTitle>
-            <PopMenuUl style={{display: `${Screen==='Desktop'?'block':'none'}`}}>
+            <PopMenuUl >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
@@ -277,7 +298,7 @@ text-align: center;
            </SectionContainer>
 
 
-           <PopMenuFooter style={{display: Screen==='Desktop'?'flex':'none'}}>
+           <PopMenuFooter>
             <ul style={{display: 'flex'}}>
               <StyledLi><StyledLink to="/">English</StyledLink></StyledLi>
               <StyledLi><StyledLink to="/">content</StyledLink></StyledLi>
