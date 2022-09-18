@@ -1,11 +1,8 @@
 import React from 'react'
 import styled,{ keyframes } from 'styled-components'
+import { breakpoints } from 'theme'
 
-
-  
-
-const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
-  const growOut = keyframes`
+const growOut = keyframes`
   0% {
     transform: rotateX(-90deg)
   }
@@ -19,14 +16,14 @@ const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
   
   const Menu= styled.div`
   background-color: white;
-  display:${visible ?`flex`:`none`};
-  width:${maxwidth}px;}
+  display:${props => (props.visible ?`flex`:`none`)};
+  width:${props => props.minwidth}px;}
   height: fit-content;
   position: absolute;
-  right: ${align}px;
+  right: ${props => props.align}px;
   top: calc(100% + 10px);
-  @media (max-width: 950px) {
-    width:${minwidth}px;
+  @media (${breakpoints.md}) {
+    width:${props => props.maxwidth}px;
   }
   border-radius: 4px;
   box-shadow: 0 8px 16px #00000029;
@@ -34,7 +31,7 @@ const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
   z-index: 10;
   transition: all 0,5s ease-in-out;
   transform-origin: top center;
-  ${minwidth && `
+  ${props => (props.minwidth && `
   &:before{
   content: '';
   position: absolute;
@@ -57,9 +54,13 @@ const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
     right: 7.5px;
     z-index:-1;
   }
-  `}
+  `)}
   `
-    return <Menu style={style}>{children}</Menu>
+  
+
+const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
+  
+    return <Menu visible={visible} minwidth={minwidth} maxwidth={maxwidth} align={align} style={style}>{children}</Menu>
 }
 
 export default Popmenu
