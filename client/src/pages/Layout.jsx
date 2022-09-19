@@ -137,24 +137,7 @@ const Layout = () => {
   
   
 
-  const [Screen,setScreen]=useState()
-  const Resize =()=>{
-    if(window.innerWidth > 980 )
-    {
-      setScreen('Desktop')
-    }
-    else 
-    {
-      setScreen('Small')
-    }
-  }
-  useEffect(()=>{
-    Resize();
-  },[]);
-  useEffect(()=>{
-    window.addEventListener('resize',Resize)
-    return () => window.removeEventListener('resize', Resize);
-  });
+  
   
  
 
