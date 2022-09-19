@@ -4,7 +4,7 @@ import Button from 'components/styled/Button';
 import React from 'react'
 import {Outlet ,Link } from "react-router-dom";
 import styled from 'styled-components';
-import { useState,useEffect} from 'react';
+import { useState} from 'react';
 import { DownSliderMenu, Popmenu, PopMenuFooter, SearchButton,PopMenuUl } from 'components/styled';
 import Search from 'components/Search';
 import { SearchIcon } from 'components/Search/search.styled';
@@ -45,7 +45,6 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   transition: all .1s ease-in-out;
   z-index: 10;
-  height:
   `
 const Spliter= styled.div`
 background-color:${props=>props.theme.palette.text.main};
@@ -111,6 +110,15 @@ display: none;
   display: flex;
 };
 `
+const StyledA = styled.a`
+color: ${props=>props.theme.palette.text.main};
+  &:hover{
+    color: ${props=>props.theme.palette.text.secondary};
+  }
+  text-decoration: none;
+  transition: all .1s ease-in-out;
+  z-index: 10;
+`
 
 
 const Layout = () => {
@@ -154,13 +162,13 @@ const Layout = () => {
             <Search maxwidth='510' align='-450' height="40px" visible={isActive[1]} onClick={()=>menuOpen(1)}/>
           <Desktop className='Desktop' style={{}}>
           <StyledLi style={{margin: "0px 20px"}}>
-            <StyledLink to="/explore">Explore</StyledLink>
+          <StyledA href="https://unsplash.com/explore" target="_blank" rel="noreferrer">Explore</StyledA>
           </StyledLi>
           <StyledLi style={{margin: "0px 20px"}}>
-            <StyledLink to="/advertise">Advertise</StyledLink>
+          <StyledA href="https://unsplash.com/advertise" target="_blank" rel="noreferrer">Advertise</StyledA>
           </StyledLi>
           <StyledLi style={{margin: "0px 20px"}}>
-            <StyledLink to="/blog">Blog</StyledLink>
+          <StyledA href="https://unsplash.com/blog" target="_blank" rel="noreferrer">Blog</StyledA>
           </StyledLi>
             <Spliter style={{width:'1px',height:'30px'}}></Spliter>
           <StyledLi style={{margin: "0px 20px"}}>
@@ -274,9 +282,10 @@ const Layout = () => {
               <StyledLi><StyledLink to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink to="/">content</StyledLink></StyledLi>
             </ul>
-              <div style={{alignItems: 'center',justifyContent: 'center',display: 'flex'}}>
+              <div style={{alignItems: 'center',justifyContent: 'center',display: 'flex',position: 'relative'}}>
               <StyledLink style={{marginRight: '5px'}} to="/">English</StyledLink>
-              <DownArrorButton onClick={()=>menuOpen(2)}><Popmenu visible={isActive[2]}  maxwidth='196' align='-12' style={{transform: 'rotate(-45deg)',top: '35px'}}>maikatiii</Popmenu></DownArrorButton>
+              <DownArrorButton onClick={()=>menuOpen(2)}></DownArrorButton>
+              <Popmenu visible={isActive[2]}  maxwidth='196' align='-12'>maikatiii</Popmenu>
               </div>
             </PopMenuFooter>
 
