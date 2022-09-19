@@ -15,9 +15,10 @@ const growOut = keyframes`
   `
   
   const Menu= styled.div`
+  animation: ${growOut} 300ms ease-in-out forwards;
   background-color: white;
   display:${props => (props.visible ?`flex`:`none`)};
-  width:${props => props.minwidth}px;}
+  width:${props => props.minwidth ?props => props.minwidth :props => props.maxwidth}px;}
   height: fit-content;
   position: absolute;
   right: ${props => props.align}px;
@@ -58,9 +59,9 @@ const growOut = keyframes`
   `
   
 
-const Popmenu = ({visible,children,minwidth,maxwidth,align,style}) => {
+const Popmenu = (props) => {
   
-    return <Menu visible={visible} minwidth={minwidth} maxwidth={maxwidth} align={align} style={style}>{children}</Menu>
+    return <Menu {...props} style={props.style}>{props.children}</Menu>
 }
 
 export default Popmenu

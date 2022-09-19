@@ -11,5 +11,10 @@ const breakpoints = {
     md: `(min-width: ${size.md})`,
     lg: `(min-width: ${size.lg})`,
     xl: `(min-width: ${size.xl})`,
+    mxs: `(max-width: ${size.xs})`,
+    msm: `(max-width: ${size.sm})`,
+    mmd: `(max-width: ${size.md})`,
+    mlg: `(max-width: ${size.lg})`,
+    mxl: `(max-width: ${size.xl})`,
 }
 export default breakpoints

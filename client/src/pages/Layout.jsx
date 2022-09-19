@@ -5,24 +5,15 @@ import React from 'react'
 import {Outlet ,Link } from "react-router-dom";
 import styled from 'styled-components';
 import { useState,useEffect} from 'react';
-import { DownSliderMenu, Popmenu, PopMenuFooter, SearchButton } from 'components/styled';
+import { DownSliderMenu, Popmenu, PopMenuFooter, SearchButton,PopMenuUl } from 'components/styled';
 import Search from 'components/Search';
 import { SearchIcon } from 'components/Search/search.styled';
-import { breakpoints } from 'theme';
+import theme, { breakpoints } from 'theme';
 import { isContentEditable } from '@testing-library/user-event/dist/utils';
 
 
 
 
-const PopMenuUl= styled.ul`
-padding: 0px;
-z-index: 10;
-display: none;
-@media (${breakpoints.md})
-{
-  display: block;
-}
-`
 
 const StyledUl = styled.ul`
   font-size: 14px;
@@ -139,8 +130,8 @@ const Layout = () => {
       return item=false
       else{
         return item
-      }
-        })
+      } 
+    })
       });
     }
   
@@ -177,7 +168,7 @@ const Layout = () => {
           <StyledLi>
             <StyledLink style={{width: '32px'}} to="/" ><Icon  path={logo}/></StyledLink>
           </StyledLi>
-            <Search height="40px"/>
+            <Search maxwidth='510' align='-450' height="40px" visible={isActive[1]} onClick={()=>menuOpen(1)}/>
           <Desktop className='Desktop' style={{}}>
           <StyledLi style={{margin: "0px 20px"}}>
             <StyledLink to="/explore">Explore</StyledLink>
@@ -210,14 +201,14 @@ const Layout = () => {
             <PopMenuTitle>
               title
             </PopMenuTitle>
-            <PopMenuUl >
+            <PopMenuUl breakpoint={breakpoints.md} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
             </PopMenuUl>
 
             <DownSliderMenu  title='Neshto'>
-            <PopMenuUl>
+            <PopMenuUl breakpoint={breakpoints.mmd} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
@@ -229,14 +220,14 @@ const Layout = () => {
            <PopMenuTitle>
               title
             </PopMenuTitle>
-            <PopMenuUl >
+            <PopMenuUl breakpoint={breakpoints.md}  >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
             </PopMenuUl>
 
             <DownSliderMenu  title='Neshto'>
-            <PopMenuUl>
+            <PopMenuUl breakpoint={breakpoints.mmd} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
@@ -247,14 +238,14 @@ const Layout = () => {
            <PopMenuTitle>
               title
             </PopMenuTitle>
-            <PopMenuUl >
+            <PopMenuUl breakpoint={breakpoints.md} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
             </PopMenuUl>
 
             <DownSliderMenu  title='Neshto'>
-            <PopMenuUl>
+            <PopMenuUl breakpoint={breakpoints.mmd} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
@@ -267,7 +258,7 @@ const Layout = () => {
            <PopMenuTitle>
               title
             </PopMenuTitle>
-            <PopMenuUl >
+            <PopMenuUl breakpoint={breakpoints.md} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
@@ -275,7 +266,7 @@ const Layout = () => {
 
 
             <DownSliderMenu  title='Neshto'>
-            <PopMenuUl>
+            <PopMenuUl breakpoint={breakpoints.mmd} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
@@ -284,7 +275,7 @@ const Layout = () => {
            </StyledSection>
            <StyledSection>
             <DownSliderMenu title='Neshto'>
-            <PopMenuUl>
+            <PopMenuUl breakpoint={breakpoints.mmd} >
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
               <StyledLi><StyledLink style={{padding: '6px 12px'}} to="/">content</StyledLink></StyledLi>
@@ -304,6 +295,14 @@ const Layout = () => {
               <StyledLink style={{marginRight: '5px'}} to="/">English</StyledLink>
               <DownArrorButton onClick={()=>menuOpen(2)}><Popmenu visible={isActive[2]}  maxwidth='196' align='-12' style={{transform: 'rotate(-45deg)',top: '35px'}}>maikatiii</Popmenu></DownArrorButton>
               </div>
+            </PopMenuFooter>
+
+            <PopMenuFooter breakpoint={breakpoints.msm} style={{padding: '16px 24px',flexDirection: 'column'}}>
+              <div style={{display: 'flex',justifyContent: "space-between"}}>
+              <Button text='Submit a photo'/>
+              <Button text='Log in'/>
+              </div>
+              <div style={{color: `${theme.palette.text.main}`,marginTop:'16px'}}>New to Splash? <Link style={{color: `${theme.palette.text.main}`}} to="/signup">Sign up for free</Link></div>
             </PopMenuFooter>
             
 

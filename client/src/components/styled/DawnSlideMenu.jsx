@@ -17,7 +17,7 @@ color: ${props=>props.theme.palette.text.main};
 cursor: pointer;
 font-size: 25px;
 line-height: 15px;
-transition: transform 0.3s ease-in-out;
+transition: transform 0.1s ease-in-out;
 transform: rotate(${props => props.open?'180':'0'}deg);
 `
 const DawnSlideMenu = ({children,title}) => {
@@ -25,7 +25,7 @@ const DawnSlideMenu = ({children,title}) => {
   return (
     <MenuContainer>
         <h1 style={{display: 'flex',justifyContent: 'space-between'}}>{title} <Arrow onClick={()=>setOpen(!open)} open={open}>⌄</Arrow></h1>
-        <div className='slider' style={{display: `${open===true ?'flex':'none'}`,justifyContent: 'center'}}>{children}</div>
+        <div className='slider' style={{display: `${open===true ?'flex':'none'}`,justifyContent: 'center',height: 'fit-content'}}>{children}</div>
     </MenuContainer>
   )
 }

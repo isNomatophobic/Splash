@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components';
 
 const FooterContainer = styled.div`
-height: 55px;
 padding: 16px 32px;
 border-top: 1.5px solid #E7E1E1;
 display: none;
@@ -12,9 +11,9 @@ display: none;
 justify-content: space-around;
 `
 
-const PopMenuFooter = ({children,breakpoint}) => {
+const PopMenuFooter = ({children,breakpoint,style}) => {
   return (
-    <FooterContainer breakpoint={breakpoint}>{children}</FooterContainer>
+    <FooterContainer breakpoint={breakpoint} style={style}>{children}</FooterContainer>
   )
 }
 
