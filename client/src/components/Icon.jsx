@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes  from 'prop-types'
 
 
-const Icon = ({path,size,onclick}) => {
+const Icon = ({path,size,cursor}) => {
   return (
-    <img src={path} style={{width: `${size}px`,cursor: 'pointer'}} onClick={onclick}/>
+    <img src={path} style={{width: `${size}px`,cursor: `${cursor}`}} onClick={onclick}/>
   )
 }
 

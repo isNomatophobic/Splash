@@ -8,6 +8,7 @@ display: none;
 @media (${props=> props.breakpoint})
 {
   display: block;
+  padding-left: 40px;
 }
 `
 
