@@ -8,7 +8,10 @@ display: grid;
 padding-bottom: 8px;
 padding-top: 8px;
 grid-template-columns: 24px 1fr;
-}
+display: none;
+@media (${(props)=> (props.breakpoint)}) {
+  display: grid;
+};
 `
 
 export default FlexSpaceBeween

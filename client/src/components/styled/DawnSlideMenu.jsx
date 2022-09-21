@@ -25,7 +25,7 @@ const DawnSlideMenu = ({children,title}) => {
   return (
     <MenuContainer>
         <h1 style={{display: 'flex',justifyContent: 'space-between'}}>{title} <Arrow onClick={()=>setOpen(!open)} open={open}>⌄</Arrow></h1>
-        <div className='slider' style={{display: `${open===true ?'flex':'none'}`,justifyContent: 'center',height: 'fit-content'}}>{children}</div>
+        <div className='slider' style={{display: `${open===true ?'flex':'none'}`,height: 'fit-content'}}>{children}</div>
     </MenuContainer>
   )
 }
