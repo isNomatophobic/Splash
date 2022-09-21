@@ -1,7 +1,7 @@
 import styled, { Box } from 'components/styled'
 import React from 'react'
 
-const Container = styled(Box)`
+const ImageSearchContainer = styled(Box)`
 justify-content: space-between;
 `
 const HeaderTitle = styled.h4`
@@ -9,11 +9,11 @@ const HeaderTitle = styled.h4`
 
 const ImageSearchHeader = () => {
   return (
-    <Container>
+    <ImageSearchContainer>
         <HeaderTitle>
            Visual Search
         </HeaderTitle>
-    </Container>
+    </ImageSearchContainer>
   )
 }
 
