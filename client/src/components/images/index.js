@@ -5,3 +5,6 @@ export {default as community} from './group-of-people-having-a-conversation-svgr
 export {default as translate} from './translate-svgrepo-com.svg'
 export {default as legal} from './notepad-svgrepo-com.svg'
 export {default as translatemb} from './translate-svgrepo-com mobile.svg'
+export {default as DragDropImage} from './DragDrobImage.png'
+export {default as link} from './iconmonstr-link-3.svg'
+export {default as testimagesearch} from './testimagesearch.jpg'
