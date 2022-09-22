@@ -1,4 +1,5 @@
-import styled, { Box } from 'components/styled'
+import { Box } from 'components/styled'
+import styled from 'styled-components'
 import React from 'react'
 
 const ImageSearchContainer = styled(Box)`
